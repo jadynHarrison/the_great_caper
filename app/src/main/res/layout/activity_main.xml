@@ -27,7 +27,7 @@
             android:layout_weight="2.5"
             android:contentDescription="@string/app_name"
             android:scaleType="fitCenter"
-            android:src="@drawable/gameboard" />
+            android:src="@drawable/gameboard2" />
 
         <LinearLayout
             android:id="@+id/buttonColumn"
