@@ -38,6 +38,31 @@
             android:orientation="vertical"
             android:padding="16dp">
 
+            <ImageView
+                android:id="@+id/pawn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitStart"
+                android:scaleX="0.5"
+                android:scaleY="0.5"
+                android:src="@drawable/yellowpawn" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Colonel Mustard"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your turn."
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
             <Button
                 android:id="@+id/action1"
                 android:layout_width="match_parent"
