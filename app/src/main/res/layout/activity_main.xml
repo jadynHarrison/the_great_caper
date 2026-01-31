@@ -8,9 +8,9 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
+    <!-- First layout : Horizontal-->
     <LinearLayout
-        android:id="@+id/rootRow"
+        android:id="@+id/mainLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
@@ -20,20 +20,52 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageView
-            android:id="@+id/mainImage"
-            android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/leftColumnLayout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/topLeftColumnLayout"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="2.5"
+            android:layout_weight="3"
+            android:orientation="vertical">
+        <ImageView
+            android:id="@+id/gameBoardImageView"
+            android:layout_width="match_parent"
+            android:layout_height="558dp"
             android:contentDescription="@string/app_name"
             android:scaleType="fitCenter"
             android:src="@drawable/gameboard2" />
+        </LinearLayout>
+
 
         <LinearLayout
-            android:id="@+id/buttonColumn"
+            android:id="@+id/paintingLayout"
+            android:layout_width="match_parent"
+            android:layout_height="78dp"
+            android:layout_weight="3"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/paint1"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/rigthColumnLayout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1.5"
+            android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
             android:padding="16dp">
