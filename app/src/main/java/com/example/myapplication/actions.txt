@@ -1,0 +1,30 @@
+
+
+General actions
+
+- connectAction()
+- chooseDirection()
+- chooseNumberPlayers()
+- setName()
+- endTurn()
+- markStolenPaintings()
+
+
+
+Guard actions
+
+- restorePower()
+- rollDiceForMovement()
+- rollDiceForCameras()
+- endTurn()
+- guardMove()
+- chooseQuestion()
+
+Robber Actions
+
+- thiefMove()
+- chooseEntrence()
+- cutPower()
+- capturePaint()
+- disableCamera()
+- reject2MotionDetector()
