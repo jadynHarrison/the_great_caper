@@ -243,21 +243,20 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="bottom"
                 android:layout_weight="0"
+                android:gravity="right"
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/rulebook2"
-                    android:layout_width="57dp"
+                    android:id="@+id/button"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:layout_marginTop="12dp"
-                    android:layout_weight="1"
+                    android:layout_weight="0"
                     android:fontFamily="serif"
-                    android:insetLeft="200dp"
-                    android:text="Rules"
-                    android:textAlignment="textEnd"
-                    android:textColorLink="#A6A6A7" />
+                    android:text="Rules" />
+
             </LinearLayout>
 
         </LinearLayout>
