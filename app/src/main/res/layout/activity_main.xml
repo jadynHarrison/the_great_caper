@@ -35,31 +35,13 @@
             android:layout_weight="3"
             android:orientation="vertical">
 
-            <FrameLayout
+            <ImageView
+                android:id="@+id/gameBoardImageView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/gameBoardImageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="@string/app_name"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/gameboard2" />
-
-                <ImageView
-                    android:id="@+id/pawn2"
-                    android:layout_width="37dp"
-                    android:layout_height="64dp"
-                    android:layout_gravity="center"
-                    android:scaleType="fitCenter"
-                    android:scaleX="0.9"
-                    android:scaleY="0.9"
-                    android:src="@drawable/yellowpawn"
-                    tools:layout_editor_absoluteX="100dp"
-                    tools:layout_editor_absoluteY="457dp" />
-            </FrameLayout>
-
+                android:layout_height="558dp"
+                android:contentDescription="@string/app_name"
+                android:scaleType="fitCenter"
+                android:src="@drawable/gameboard2" />
         </LinearLayout>
 
 
@@ -149,11 +131,11 @@
 
             <LinearLayout
                 android:id="@+id/userTurnInfo"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="vertical"
-            android:padding="10dp"
-                android:gravity="center">
+                android:padding="10dp">
 
                 <TextView
                     android:id="@+id/turnInfo"
@@ -165,28 +147,29 @@
                     android:textColor="#FFFFFF"
                     android:textSize="24sp" />
 
-            <ImageView
-                android:id="@+id/pawn"
-                android:layout_width="100dp"
-                android:layout_height="112dp"
-                android:scaleType="fitStart"
-                android:scaleX="0.9"
-                android:scaleY="0.9"
-                android:src="@drawable/yellowpawn" />
+                <ImageView
+                    android:id="@+id/pawn"
+                    android:layout_width="100dp"
+                    android:layout_height="112dp"
+                    android:scaleType="fitStart"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9"
+                    android:src="@drawable/yellowpawn" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="cursive"
-                android:text="Colonel Mustard"
-                android:textAlignment="center"
-                android:textColor="#F2BC0A"
-                android:textSize="34sp" />
+                <TextView
+                    android:id="@+id/userName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="cursive"
+                    android:text="Colonel Mustard"
+                    android:textAlignment="center"
+                    android:textColor="#F2BC0A"
+                    android:textSize="34sp" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/diesForUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -210,13 +193,14 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/CameraInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:id="@+id/cameraInfo"
+                    android:id="@+id/cameraOffAndOn1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -247,6 +231,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/cameraOffAndOn2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -278,6 +263,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/RulesInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
