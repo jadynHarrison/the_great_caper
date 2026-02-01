@@ -47,15 +47,73 @@
         <LinearLayout
             android:id="@+id/paintingLayout"
             android:layout_width="match_parent"
-            android:layout_height="78dp"
+            android:layout_height="150dp"
             android:layout_weight="3"
-            android:gravity="bottom"
-            android:orientation="horizontal">
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp">
             <ImageView
-                android:layout_width="44dp"
-                android:layout_height="44dp"
+                android:layout_width="66dp"
+                android:layout_height="66dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/paint1"/>
+                android:src="@drawable/paint1"
+                android:padding="5dp"/>
+            <ImageView
+                android:layout_width="66dp"
+                android:layout_height="66dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/paint2"
+                android:padding="5dp"/>
+            <ImageView
+                android:layout_width="66dp"
+                android:layout_height="66dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/paint3"
+                android:padding="5dp"/>
+            <ImageView
+                android:layout_width="66dp"
+                android:layout_height="66dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/paint4"
+                android:padding="5dp"/>
+
+            <ImageView
+                android:layout_width="66dp"
+                android:layout_height="66dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/paint5"
+                android:padding="5dp"/>
+
+            <ImageView
+                android:layout_width="66dp"
+                android:layout_height="66dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/paint6"
+                android:padding="5dp"/>
+            <ImageView
+                android:layout_width="66dp"
+                android:layout_height="66dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/paint7"
+                android:padding="5dp"/>
+
+            <ImageView
+                android:layout_width="66dp"
+                android:layout_height="66dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/paint8"
+                android:padding="5dp"/>
+
+            <ImageView
+                android:layout_width="66dp"
+                android:layout_height="66dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/paint9"
+                android:padding="5dp"/>
+
+
+
+
 
 
         </LinearLayout>
