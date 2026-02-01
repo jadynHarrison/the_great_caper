@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:background="@drawable/film_clue"
+    android:background="@drawable/film_blurred"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
@@ -133,6 +133,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="serif"
                 android:text="Your turn."
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
@@ -162,6 +163,7 @@
                 android:id="@+id/action1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="serif"
                 android:text="Button 1" />
 
             <Button
@@ -169,6 +171,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:fontFamily="serif"
                 android:text="Button 2" />
 
             <LinearLayout
@@ -237,16 +240,25 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <Button
-                android:id="@+id/rulebook"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginTop="12dp"
-                android:fontFamily="serif"
-                android:text="Rules"
-                android:textAlignment="textEnd"
-                android:textColorLink="#A6A6A7" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/rulebook2"
+                    android:layout_width="57dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginTop="12dp"
+                    android:layout_weight="1"
+                    android:fontFamily="serif"
+                    android:insetLeft="200dp"
+                    android:text="Rules"
+                    android:textAlignment="textEnd"
+                    android:textColorLink="#A6A6A7" />
+            </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>
