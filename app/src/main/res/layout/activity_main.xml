@@ -35,13 +35,31 @@
             android:layout_weight="3"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/gameBoardImageView"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="558dp"
-                android:contentDescription="@string/app_name"
-                android:scaleType="fitCenter"
-                android:src="@drawable/gameboard2" />
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/gameBoardImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/gameboard2" />
+
+                <ImageView
+                    android:id="@+id/pawn2"
+                    android:layout_width="37dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9"
+                    android:src="@drawable/yellowpawn"
+                    tools:layout_editor_absoluteX="100dp"
+                    tools:layout_editor_absoluteY="457dp" />
+            </FrameLayout>
+
         </LinearLayout>
 
 
