@@ -181,24 +181,24 @@
 
                     <ImageView
                         android:id="@+id/oncamera"
-                        android:layout_width="50dp"
-                        android:layout_height="45dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:layout_weight="1"
                         android:scaleType="fitStart"
                         android:src="@drawable/cameraworking" />
 
                     <ImageView
                         android:id="@+id/oncamera7"
-                        android:layout_width="50dp"
-                        android:layout_height="45dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:layout_weight="1"
                         android:scaleType="fitStart"
                         android:src="@drawable/cameraworking" />
 
                     <ImageView
                         android:id="@+id/oncamera8"
-                        android:layout_width="50dp"
-                        android:layout_height="45dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:layout_weight="1"
                         android:scaleType="fitStart"
                         android:src="@drawable/cameraworking" />
@@ -211,16 +211,16 @@
 
                     <ImageView
                         android:id="@+id/oncamera9"
-                        android:layout_width="50dp"
-                        android:layout_height="45dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:layout_weight="1"
                         android:scaleType="fitStart"
                         android:src="@drawable/cameraworking" />
 
                     <ImageView
                         android:id="@+id/oncamera10"
-                        android:layout_width="50dp"
-                        android:layout_height="45dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:layout_weight="1"
                         android:scaleType="fitStart"
                         android:src="@drawable/cameraworking" />
