@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
 import android.os.Bundle;
+import android.widget.ImageButton;
+import android.widget.NumberPicker;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,5 +22,16 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        ImageButton playButton = findViewById(R.id.playButton);
+
+        playButton.setOnClickListener(v ->
+        {
+            Intent intent = new Intent(MainActivity.this, PlayerSelectActivity.class);
+            startActivity(intent);
+        });
+
+
+
     }
 }
