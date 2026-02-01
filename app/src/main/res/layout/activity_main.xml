@@ -129,15 +129,23 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:id="@+id/userTurnInfo"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="serif"
-                android:text="Your turn."
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:orientation="vertical"
+            android:padding="10dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/turnInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="serif"
+                    android:text="Your turn."
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp" />
 
             <ImageView
                 android:id="@+id/pawn"
@@ -158,7 +166,14 @@
                 android:textColor="#F2BC0A"
                 android:textSize="34sp" />
 
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:gravity="center_horizontal">
             <Button
                 android:id="@+id/action1"
                 android:layout_width="match_parent"
@@ -174,12 +189,16 @@
                 android:fontFamily="serif"
                 android:text="Button 2" />
 
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/cameraInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -242,10 +261,9 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_weight="0"
-                android:gravity="right"
+                android:gravity="center_horizontal|center_vertical"
                 android:orientation="horizontal">
 
                 <Button
