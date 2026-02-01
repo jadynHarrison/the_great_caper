@@ -31,16 +31,17 @@
         <LinearLayout
             android:id="@+id/topLeftColumnLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="571dp"
             android:layout_weight="3"
             android:orientation="vertical">
-        <ImageView
-            android:id="@+id/gameBoardImageView"
-            android:layout_width="match_parent"
-            android:layout_height="558dp"
-            android:contentDescription="@string/app_name"
-            android:scaleType="fitCenter"
-            android:src="@drawable/gameboard2" />
+
+            <ImageView
+                android:id="@+id/gameBoardImageView"
+                android:layout_width="match_parent"
+                android:layout_height="558dp"
+                android:contentDescription="@string/app_name"
+                android:scaleType="fitCenter"
+                android:src="@drawable/gameboard2" />
         </LinearLayout>
 
 
@@ -150,10 +151,11 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="cursive"
                 android:text="Colonel Mustard"
                 android:textAlignment="center"
                 android:textColor="#F2BC0A"
-                android:textSize="24sp" />
+                android:textSize="34sp" />
 
 
             <Button
@@ -243,6 +245,7 @@
                 android:layout_marginTop="12dp"
                 android:fontFamily="serif"
                 android:text="Rules"
+                android:textAlignment="textEnd"
                 android:textColorLink="#A6A6A7" />
 
         </LinearLayout>
