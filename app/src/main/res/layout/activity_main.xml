@@ -12,151 +12,306 @@
     <LinearLayout
         android:id="@+id/mainLayout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
         android:weightSum="4"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
+        app:layout_constraintTop_toTopOf="parent">
+<!--    contains the game board and the 9 paintings in 1 layout -->
         <FrameLayout
             android:id="@+id/leftColumnLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:orientation="vertical">
+            android:layout_weight="3">
+<!--        contains only the 9 paintings -->
+            <LinearLayout
+                android:id="@+id/paintingLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="bottom"
+                android:layout_gravity="bottom"
+                android:orientation="horizontal"
+                android:padding="10dp">
+<!--            this makes a frame layout that contains two images of the same painting -->
+<!--            [doesn't mess with layout when initial painting is placed on board] -->
+<!--            [frame layout allows for stacking of images, which linear layout does not]-->
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+<!--                contains the "background painting" -->
+<!--                [ensures the layout doesn't shrink when the initial painting is moved]-->
 
-        <FrameLayout
-            android:id="@+id/topLeftColumnLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:orientation="vertical">
+<!--                the clickable:false = doesn't listen to onClickListener = don't move-->
+<!--                alpha = 0.0 = transparent [looks like the paintings moved, but its still there; placeholer]-->
+                    <ImageView
+                        android:id="@+id/painting1_bg"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/paint1"
+                        android:clickable="false"
+                        android:alpha="0.0"
+                        android:padding="5dp"/>
+<!--                [this is the actual painting that is being dragged and dropped]-->
+                    <ImageView
+                        android:id="@+id/painting1"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/paint1"
+                        android:clickable="true"
+                        android:padding="5dp"/>
+                </FrameLayout>
+<!--            this process ill call it (x2) for cameras + paintings-->
 
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/painting2_bg"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/paint2"
+                        android:clickable="false"
+                        android:alpha="0.0"
+                        android:padding="5dp"/>
+                    <ImageView
+                        android:id="@+id/painting2"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/paint2"
+                        android:clickable="true"
+                        android:padding="5dp"/>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/painting3_bg"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/paint3"
+                        android:clickable="false"
+                        android:alpha="0.0"
+                        android:padding="5dp"/>
+                    <ImageView
+                        android:id="@+id/painting3"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/paint3"
+                        android:clickable="true"
+                        android:padding="5dp"/>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/painting4_bg"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/paint4"
+                        android:clickable="false"
+                        android:alpha="0.0"
+                        android:padding="5dp"/>
+                    <ImageView
+                        android:id="@+id/painting4"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/paint4"
+                        android:clickable="true"
+                        android:padding="5dp"/>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/painting5_bg"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/paint5"
+                        android:clickable="false"
+                        android:alpha="0.0"
+                        android:padding="5dp"/>
+                    <ImageView
+                        android:id="@+id/painting5"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/paint5"
+                        android:clickable="true"
+                        android:padding="5dp"/>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/painting6_bg"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/paint6"
+                        android:clickable="false"
+                        android:alpha="0.0"
+                        android:padding="5dp"/>
+                    <ImageView
+                        android:id="@+id/painting6"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/paint6"
+                        android:clickable="true"
+                        android:padding="5dp"/>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/painting7_bg"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/paint7"
+                        android:clickable="false"
+                        android:alpha="0.0"
+                        android:padding="5dp"/>
+                    <ImageView
+                        android:id="@+id/painting7"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/paint7"
+                        android:clickable="true"
+                        android:padding="5dp"/>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/painting8_bg"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/paint8"
+                        android:clickable="false"
+                        android:alpha="0.0"
+                        android:padding="5dp"/>
+                    <ImageView
+                        android:id="@+id/painting8"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/paint8"
+                        android:clickable="true"
+                        android:padding="5dp"/>
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/painting9_bg"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/paint9"
+                        android:clickable="false"
+                        android:alpha="0.0"
+                        android:padding="5dp"/>
+                    <ImageView
+                        android:id="@+id/painting9"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/paint9"
+                        android:clickable="true"
+                        android:padding="5dp"/>
+                </FrameLayout>
+            </LinearLayout>
+
+<!--        this layout contains the image of the game board-->
             <ImageView
                 android:id="@+id/gameBoardImageView"
                 android:layout_width="match_parent"
-                android:layout_height="558dp"
+                android:layout_height="match_parent"
                 android:contentDescription="@string/app_name"
                 android:scaleType="fitCenter"
+                android:scaleX="0.8"
+                android:scaleY="0.9"
+                android:layout_marginBottom="50dp"
                 android:src="@drawable/gameboard2" />
         </FrameLayout>
 
-
-        <LinearLayout
-            android:id="@+id/paintingLayout"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_weight="3"
-            android:gravity="bottom"
-            android:layout_gravity="bottom"
-            android:orientation="horizontal"
-            android:padding="10dp">
-            <ImageView
-                android:layout_width="66dp"
-                android:layout_height="66dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/paint1"
-                android:padding="5dp"/>
-            <ImageView
-                android:layout_width="66dp"
-                android:layout_height="66dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/paint2"
-                android:padding="5dp"/>
-            <ImageView
-                android:layout_width="66dp"
-                android:layout_height="66dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/paint3"
-                android:padding="5dp"/>
-            <ImageView
-                android:layout_width="66dp"
-                android:layout_height="66dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/paint4"
-                android:padding="5dp"/>
-
-            <ImageView
-                android:layout_width="66dp"
-                android:layout_height="66dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/paint5"
-                android:padding="5dp"/>
-
-            <ImageView
-                android:layout_width="66dp"
-                android:layout_height="66dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/paint6"
-                android:padding="5dp"/>
-            <ImageView
-                android:layout_width="66dp"
-                android:layout_height="66dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/paint7"
-                android:padding="5dp"/>
-
-            <ImageView
-                android:layout_width="66dp"
-                android:layout_height="66dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/paint8"
-                android:padding="5dp"/>
-
-            <ImageView
-                android:layout_width="66dp"
-                android:layout_height="66dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/paint9"
-                android:padding="5dp"/>
-
-
-
-
-
-
-        </LinearLayout>
-
-    </FrameLayout>
+<!--    this contains the user info [pawn and "your turn" and the dice]-->
         <LinearLayout
             android:id="@+id/rigthColumnLayout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
             android:orientation="vertical"
             android:padding="16dp">
-
+<!--        this layout contains the user turn info [pawn and "your turn"]-->
             <LinearLayout
                 android:id="@+id/userTurnInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center|top"
-                android:layout_weight="3"
                 android:orientation="vertical"
                 android:padding="10dp">
-
+<!--            contains the dialog "your turn"-->
                 <TextView
                     android:id="@+id/turnInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
-                    android:text="Your turn."
+                    android:text="Your turn"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
                     android:textSize="24sp" />
+<!--            this layout contains the 2 yellow pawns [placeholder + regular yellowpawn]-->
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/pawn"
-                    android:layout_width="100dp"
-                    android:layout_height="112dp"
-                    android:scaleType="fitStart"
-                    android:scaleX="0.9"
-                    android:scaleY="0.9"
-                    android:src="@drawable/yellowpawn" />
+                    <ImageView
+                        android:id="@+id/yellow_Pawn_bg"
+                        android:layout_width="100dp"
+                        android:layout_height="115dp"
+                        android:scaleType="fitStart"
+                        android:clickable="false"
+                        android:src="@drawable/yellowpawn" />
+                    <ImageView
+                        android:id="@+id/yellow_Pawn"
+                        android:layout_width="100dp"
+                        android:layout_height="115dp"
+                        android:scaleType="fitStart"
+                        android:clickable="true"
+                        android:src="@drawable/yellowpawn" />
+                </FrameLayout>
 
+<!--            contains the "colonel mustard" dialog -->
                 <TextView
                     android:id="@+id/userName"
                     android:layout_width="wrap_content"
@@ -166,9 +321,9 @@
                     android:textAlignment="center"
                     android:textColor="#F2BC0A"
                     android:textSize="34sp" />
-
             </LinearLayout>
 
+<!--        this layout(s) contains both the dices -->
             <LinearLayout
                 android:id="@+id/diesForUser"
                 android:layout_width="wrap_content"
@@ -182,7 +337,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
-
+<!--                contains the left dice [camera dices]-->
                     <ImageView
                         android:id="@+id/diewitheye2"
                         android:layout_width="120dp"
@@ -190,7 +345,7 @@
                         android:layout_weight="1"
                         android:scaleType="fitStart"
                         android:src="@drawable/eyedie" />
-
+<!--                contains the right dice [movement dice]-->
                     <ImageView
                         android:id="@+id/regulardie2"
                         android:layout_width="120dp"
@@ -199,10 +354,9 @@
                         android:scaleType="fitStart"
                         android:src="@drawable/numberdie" />
                 </LinearLayout>
-
-
             </LinearLayout>
 
+<!--        this layout contains all of the cameras [2 rows] -->
             <LinearLayout
                 android:id="@+id/CameraInfo"
                 android:layout_width="match_parent"
@@ -212,72 +366,178 @@
                 android:padding="10dp"
                 android:orientation="vertical">
 
+<!--            contains the top 3 cameras [first row] -->
                 <LinearLayout
                     android:id="@+id/cameraOffAndOn1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:id="@+id/offcamera"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_weight="1"
-                        android:scaleType="fitStart"
-                        android:src="@drawable/nocamera" />
+<!--                contains the 1st camera on the first row-->
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/offcamera1"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_weight="1"
-                        android:scaleType="fitStart"
-                        android:src="@drawable/nocamera" />
+                        <ImageView
+                            android:id="@+id/offcamera_bg"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitStart"
+                            android:clickable="false"
+                            android:alpha="0.0"
+                            android:src="@drawable/nocamera" />
 
-                    <ImageView
-                        android:id="@+id/oncamera4"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_weight="1"
-                        android:scaleType="fitStart"
-                        android:src="@drawable/cameraworking" />
+                        <ImageView
+                            android:id="@+id/offcamera"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitStart"
+                            android:clickable="true"
+                            android:src="@drawable/nocamera" />
+
+                    </FrameLayout>
+
+<!--                contains the 2nd camera (x2) in the first row -->
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/offcamera1_bg"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitStart"
+                            android:clickable="false"
+                            android:alpha="0.0"
+                            android:src="@drawable/nocamera" />
+
+                        <ImageView
+                            android:id="@+id/offcamera1"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitStart"
+                            android:clickable="true"
+                            android:src="@drawable/nocamera" />
+                    </FrameLayout>
+
+<!--                contains the 3rd camera (x2) on the first row  -->
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/oncamera4_bg"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitStart"
+                            android:clickable="false"
+                            android:alpha="0.0"
+                            android:src="@drawable/cameraworking" />
+
+                        <ImageView
+                            android:id="@+id/oncamera4"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitStart"
+                            android:clickable="true"
+                            android:src="@drawable/cameraworking" />
+                    </FrameLayout>
+
                 </LinearLayout>
 
+<!--            this layout contains the 3 cameras on the second row-->
                 <LinearLayout
                     android:id="@+id/cameraOffAndOn2"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:id="@+id/oncamera1"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_weight="1"
-                        android:scaleType="fitStart"
+<!--                contains the 1st camera (x2) of the second row-->
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/oncamera1_bg"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitStart"
+                            android:clickable="false"
+                            android:alpha="0.0"
+                            android:src="@drawable/cameraworking" />
 
-                        android:src="@drawable/cameraworking" />
+                            <ImageView
+                                android:id="@+id/oncamera1"
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:layout_weight="1"
+                                android:scaleType="fitStart"
+                                android:clickable="true"
+                                android:src="@drawable/cameraworking" />
 
+                    </FrameLayout>
 
-                    <ImageView
-                        android:id="@+id/oncamera2"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_weight="1"
-                        android:scaleType="fitStart"
-                        android:clickable="true"
-                        android:src="@drawable/cameraworking" />
+<!--                contains the 2nd camera (x2) of the second row-->
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
 
-                    <ImageView
-                        android:id="@+id/oncamera3"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_weight="1"
-                        android:scaleType="fitStart"
-                        android:src="@drawable/cameraworking" />
+                        <ImageView
+                            android:id="@+id/oncamera2_bg"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitStart"
+                            android:clickable="false"
+                            android:alpha="0.0"
+                            android:src="@drawable/cameraworking" />
+                        <ImageView
+                            android:id="@+id/oncamera2"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitStart"
+                            android:clickable="true"
+                            android:src="@drawable/cameraworking" />
+
+                    </FrameLayout>
+
+<!--                contains the 3rd camera (x2) on the second row-->
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/oncamera3_bg"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitStart"
+                            android:clickable="false"
+                            android:alpha="0.0"
+                            android:src="@drawable/cameraworking" />
+
+                        <ImageView
+                            android:id="@+id/oncamera3"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitStart"
+                            android:clickable="true"
+                            android:src="@drawable/cameraworking" />
+                    </FrameLayout>
+
                 </LinearLayout>
+
             </LinearLayout>
 
+<!--        this layout contains the "rules button -->
             <LinearLayout
                 android:id="@+id/RulesInfo"
                 android:layout_width="match_parent"
@@ -285,7 +545,7 @@
                 android:layout_gravity="bottom"
                 android:gravity="center_horizontal|center_vertical"
                 android:orientation="horizontal">
-
+<!--            contains the "rules" button-->
                 <Button
                     android:id="@+id/rulesBotton"
                     android:layout_width="wrap_content"
@@ -297,6 +557,7 @@
             </LinearLayout>
 
         </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

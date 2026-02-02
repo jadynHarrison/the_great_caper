@@ -10,8 +10,11 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.MotionEvent;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
+    //int paintCtr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,192 +24,153 @@ public class MainActivity extends AppCompatActivity {
 
         int numPlayers = getIntent().getIntExtra("numPlayers", 2);
 
+        //paintCtr =0;
+
+        // creating variable name(s) using the id name from cameras 1-4 [not the red ones]
         ImageView camera1 = findViewById(R.id.oncamera1);
         ImageView camera2 = findViewById(R.id.oncamera2);
         ImageView camera3 = findViewById(R.id.oncamera3);
         ImageView camera4 = findViewById(R.id.oncamera4);
 
-//        camera1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Code that runs when the image is clicked
-//                Toast.makeText(MainActivity.this, "Image clicked!", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        // creating variable names(s) using the id name from the paintings 1-9
+        ImageView p1 = findViewById(R.id.painting1);
+        ImageView p2 = findViewById(R.id.painting2);
+        ImageView p3 = findViewById(R.id.painting3);
+        ImageView p4 = findViewById(R.id.painting4);
+        ImageView p5 = findViewById(R.id.painting5);
+        ImageView p6 = findViewById(R.id.painting6);
+        ImageView p7 = findViewById(R.id.painting7);
+        ImageView p8 = findViewById(R.id.painting8);
+        ImageView p9 = findViewById(R.id.painting9);
 
-        //ImageView pawn = findViewById(R.id.camera1);
+        //creating variable name for the yellow pawn
+        ImageView yellowPawn = findViewById(R.id.yellow_Pawn);
 
-        //ViewGroup cameraOff2 = findViewById(R.id.cameraOffAndOn2);
-        //ViewGroup MainBoard = findViewById(R.id.leftColumnLayout);
+//        yellow_Pawn.setOnClickListener(pawnOnClick);
+//        yellow_Pawn.setOnTouchListener(cameraDrag);
 
-        camera1.setOnTouchListener(cameraDrag);
+        camera1.setOnTouchListener(objectDrag);
+        camera2.setOnTouchListener(objectDrag);
+        camera3.setOnTouchListener(objectDrag);
+        camera4.setOnTouchListener(objectDrag);
 
+        p1.setOnTouchListener(objectDrag);
+        p2.setOnTouchListener(objectDrag);
+        p3.setOnTouchListener(objectDrag);
+        p4.setOnTouchListener(objectDrag);
+        p5.setOnTouchListener(objectDrag);
+        p6.setOnTouchListener(objectDrag);
+        p7.setOnTouchListener(objectDrag);
+        p8.setOnTouchListener(objectDrag);
+        p9.setOnTouchListener(objectDrag);
 
-        camera2.setOnTouchListener(cameraDrag);
+        // allows for the yellow pawn to be dragged onto the board
+        yellowPawn.setOnTouchListener(objectDrag);
+    }
 
+    View.OnTouchListener objectDrag = new  View.OnTouchListener() {
+        // handler = listener = responds to an object action (drag and drop)
+        float dX, dY;
 
-        camera3.setOnTouchListener(cameraDrag);
+        @Override
+        public boolean onTouch(View view, MotionEvent event) {
+            // calls for the layout with the board and the 9 paintings
+            ViewGroup MainBoard = findViewById(R.id.leftColumnLayout);
 
-        camera4.setOnTouchListener(cameraDrag);
+            switch (event.getAction()) {
+                // action down = when you first press the image
+                case MotionEvent.ACTION_DOWN:
+                    // Store original parent(layout) [where image originally was]
+                    // get.parent = get the layout before
+                    // [1st layout (grandpa), 2nd layout(parent), 3rd layout(child)]
+                    if (view.getTag(R.id.leftColumnLayout) == null) {
+                        view.setTag(R.id.leftColumnLayout, view.getParent());
+                    }
 
+                    // Store original window coordinates only once [looks at the entire screen]
+                    //
+                    if (view.getTag(R.id.leftColumnLayout) == null) {
+                        // creates an array of 2 positions
+                        // what stores the coordinates of the window
+                        int[] loc = new int[2];
+                        view.getLocationInWindow(loc);
+                        view.setTag(R.id.leftColumnLayout, loc[0]);
+                        view.setTag(R.id.leftColumnLayout, loc[1]);
+                    }
+                    // calculates the horizontal offset(distance between a and b)
+                    // a = where the image initially is placed
+                    // b = position at the moment you start touching the image
+                    dX = view.getX() - event.getRawX();
 
-//        camera1.setOnTouchListener(new View.OnTouchListener() {
-//            float dX, dY;
-//            @Override
-//            public boolean onTouch(View view, MotionEvent event) {
-//                switch (event.getAction()) {
-//
-//                    case MotionEvent.ACTION_DOWN:
-//                        // Store the difference between view position and touch position
-//                        dX = view.getX() - event.getRawX();
-//                        dY = view.getY() - event.getRawY();
-//                        return true;
-//
-//                    case MotionEvent.ACTION_MOVE:
-//                        // Update the view’s position
-//                        view.animate()
-//                                .x(event.getRawX() + dX)
-//                                .y(event.getRawY() + dY)
-//                                .setDuration(0)
-//                                .start();
-//                        return true;
-//                    case MotionEvent.ACTION_UP:
-//                        // Check if dropped inside layoutB
-//                        if (isInsideMainBoard(view, MainBoard)) {
-//
-//                            // 1. Get target parent’s screen position BEFORE reparenting
-//                            int[] parentLoc = new int[2];
-//                            MainBoard.getLocationOnScreen(parentLoc);
-//
-//                            // 2. Compute new coordinates BEFORE removing the view
-//                            float newX = event.getRawX() - parentLoc[0] + dX;
-//                            float newY = event.getRawY() - parentLoc[1] + dY;
-//
-//                            // 3. Clamp to keep inside parent
-//                            newX = Math.max(0, Math.min(newX, MainBoard.getWidth() - view.getWidth()));
-//                            newY = Math.max(0, Math.min(newY, MainBoard.getHeight() - view.getHeight()));
-//
-//                            // Remove from old parent
-//
-//                            ViewGroup oldParent = (ViewGroup) view.getParent();
-//                            oldParent.removeView(view);
-//
-//                            // Add to new parent
-//                            MainBoard.addView(view);
-//
-//                            view.setX(newX);
-//                            view.setY(newY);
-//                            view.bringToFront();
-//
-//
-//                            Log.d("DEBUG", "Parent after drop = " + ((ViewGroup)view.getParent()).getId());
-//                        }
-//
-//                        return true;
-//
-//
-//                    default:
-//                        return false;
-//                }
-//            }
-//        });
+                    // calculates the vertical offset of these 2 positions
+                    dY = view.getY() - event.getRawY();
 
-        }
+                    // how to debug
+                    //Log.d("DEBUG", "Reset X = " + dX);
+                    // Log.d("DEBUG", "Reset Y = " + dY);
 
-        View.OnTouchListener cameraDrag = new  View.OnTouchListener() {
-            float dX, dY;
+                    return true;
 
-            @Override
-            public boolean onTouch(View view, MotionEvent event) {
-                ViewGroup MainBoard = findViewById(R.id.leftColumnLayout);
+                // event that actually moves the image
+                case MotionEvent.ACTION_MOVE:
 
-                switch (event.getAction()) {
+                    //getRawX() = fingers position on the entire screen
+                    // updates the coordinates of the image = moves
+                    view.setX(event.getRawX() + dX);
+                    view.setY(event.getRawY() + dY);
 
-                    case MotionEvent.ACTION_DOWN:
-                        // Store original parent only once
-                        if (view.getTag(R.id.leftColumnLayout) == null) {
-                            view.setTag(R.id.leftColumnLayout, view.getParent());
-                        }
+                    return true;
 
-                        // Store original window coordinates only once
-                        if (view.getTag(R.id.leftColumnLayout) == null) {
-                            int[] loc = new int[2];
-                            view.getLocationInWindow(loc);
-                            view.setTag(R.id.leftColumnLayout, loc[0]);
-                            view.setTag(R.id.leftColumnLayout, loc[1]);
-                        }
+                // event that finalizes what happens to the piece
+                case MotionEvent.ACTION_UP:
+                    // checks to see if image is inside the game board
+                    if (isInsideMainBoard(view, MainBoard)) {
 
-                        dX = view.getX() - event.getRawX();
-                        dY = view.getY() - event.getRawY();
+                        // 1. gets the coordinates of the parent screen BEFORE reparenting
+                        int[] parentLoc = new int[2];
+                        MainBoard.getLocationOnScreen(parentLoc);
 
-                        Log.d("DEBUG", "Reset X = " + dX);
-                        Log.d("DEBUG", "Reset Y = " + dY);
+                        // 2. computes new coordinates BEFORE removing the image
+                        // [converts the screen coordinates into coordinates inside the game board]
+                        float newX = event.getRawX() - parentLoc[0] ;
+                        float newY = event.getRawY() - parentLoc[1] ;
 
-                        return true;
+                        // 3. forces the image to stay within a max. and min. range --> to keep inside parent
+                        // image can't go outside game board
+                        newX = Math.max(50, Math.min(newX, MainBoard.getWidth() - view.getWidth()));
+                        newY = Math.max(50, Math.min(newY, MainBoard.getHeight() - view.getHeight()));
 
-                    case MotionEvent.ACTION_MOVE:
+                        // removes from old parent (a.k.a orignal layout of image)
+                        ViewGroup oldParent = (ViewGroup) view.getParent();
+                        oldParent.removeView(view);
 
-                        view.setX(event.getRawX() + dX);
-                        view.setY(event.getRawY() + dY);
+                        // adds to new parent (a.k.a the layout of where the image was placed)
+                        // layout of game board
+                        MainBoard.addView(view);
 
-                        return true;
-                    case MotionEvent.ACTION_UP:
-                        // Check if dropped inside layoutB
-                        if (isInsideMainBoard(view, MainBoard)) {
+                        view.setX(newX);
+                        view.setY(newY);
+                        view.bringToFront();
+                    }
+                    // if this is the yellow pawn, change it to a dot
+                    // keeps the game board less crowded
+                    if (view.getId() == R.id.yellow_Pawn) {
+                        ((ImageView)view).setImageResource(R.drawable.yellow_dot);
 
-                            // 1. Get target parent’s screen position BEFORE reparenting
-                            int[] parentLoc = new int[2];
-                            MainBoard.getLocationOnScreen(parentLoc);
+                        // shrinks it to dot size
+                        ViewGroup.LayoutParams params = view.getLayoutParams();
+                        params.width = 80;
+                        params.height = 80;
+                        view.setLayoutParams(params);
+                    }
+                    return true;
 
-                            // 2. Compute new coordinates BEFORE removing the view
-                            float newX = event.getRawX() - parentLoc[0] ;//+ dX;
-                            float newY = event.getRawY() - parentLoc[1] ;//+ dY;
-
-                            // 3. Clamp to keep inside parent
-                            newX = Math.max(50, Math.min(newX, MainBoard.getWidth() - view.getWidth()));
-                            newY = Math.max(50, Math.min(newY, MainBoard.getHeight() - view.getHeight()));
-
-                            // Remove from old parent
-                            Log.d("DEBUG", "Parent before drop = " + ((ViewGroup) view.getParent()).getId());
-                            ViewGroup oldParent = (ViewGroup) view.getParent();
-                            oldParent.removeView(view);
-
-                            // Add to new parent
-                            MainBoard.addView(view);
-
-                            view.setX(newX);
-                            view.setY(newY);
-                            view.bringToFront();
-
-                            Log.d("DEBUG", "Parent after drop = " + ((ViewGroup) view.getParent()).getId());
-                            Log.d("DEBUG", "New X = " + newX);
-                            Log.d("DEBUG", "New Y = " + newY);
-                        }
-//                        else
-//                        {
-//                            float[] originalV = (float[]) view.getTag();
-//
-//                            int[] parentLocReset = new int[2];
-//                            ((ViewGroup)view.getParent()).getLocationInWindow(parentLocReset);
-//
-//                            float resetXRst = originalV[0] - parentLocReset[0];
-//                            float resetYRst = originalV[1] - parentLocReset[1];
-//
-//                            view.setX(resetXRst);
-//                            view.setY(resetYRst);
-//
-//                            Log.d("DEBUG", "Reset X = " + resetXRst);
-//                            Log.d("DEBUG", "Reset Y = " + resetYRst);
-//
-//                        }
-
-                        return true;
-
-                    default:
-                        return false;
-                }
+                default:
+                    return false;
             }
-        };
+        }
+    };
+    // helper method = checks whether the image is inside the game board's bounds
     private boolean isInsideMainBoard(View child, ViewGroup parent) {
         int[] parentLoc = new int[2];
         int[] childLoc = new int[2];
@@ -219,6 +183,23 @@ public class MainActivity extends AppCompatActivity {
                 childLoc[0] + child.getWidth() <= parentLoc[0] + parent.getWidth() &&
                 childLoc[1] + child.getHeight() <= parentLoc[1] + parent.getHeight();
     }
-    }
+}
 
-
+// this method changes the image yellow pawn --> green pawn when clicked [can be used for when the cameras are disactivated]
+//    View.OnClickListener pawnOnClick = new View.OnClickListener()
+//    {
+//        @Override
+//        public void onClick(View v)
+//        {
+//            ImageView pawn = findViewById(R.id.pawn);
+//            pawn.setImageResource(R.drawable.cameraworking);
+//
+//            int currentImage = R.drawable.yellowpawn;
+//            if(currentImage == R.drawable.yellowpawn) {
+//                pawn.setImageResource(R.drawable.greenpawn);
+//            }
+//            else {pawn.setImageResource(R.drawable.yellowpawn); }
+//
+//            Toast.makeText(MainActivity.this, "Image clicked!", Toast.LENGTH_SHORT).show();
+//        }
+//    };
