@@ -67,6 +67,14 @@ public class MainActivity extends AppCompatActivity {
         // allows for the yellow pawn to be dragged onto the board
         yellowPawn.setOnTouchListener(objectDrag);
     }
+//    /**
+//     * External Citation
+//     * Date: 1 Feb 2026
+//     * Problem: could not get the image to drag and drop onto game board
+//     * Resource:gerardo esquivel
+//     * Solution: used the drag and drop pdf provided + copilot
+//     * to figure out the components needed for actions down, move, and up
+//     */
 
     View.OnTouchListener objectDrag = new  View.OnTouchListener() {
         // handler = listener = responds to an object action (drag and drop)
