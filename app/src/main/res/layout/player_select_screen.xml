@@ -59,6 +59,7 @@
                 android:layout_gravity="center">
 <!--these are the numbers [2-7] for the number of people playing-->
                 <TextView
+                    android:id="@+id/p2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="monospace"
@@ -68,6 +69,7 @@
                     android:textStyle="bold"/>
 
                 <TextView
+                    android:id="@+id/p3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="20dp"
@@ -76,6 +78,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/p4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="20dp"
@@ -84,6 +87,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/p5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="20dp"
@@ -92,6 +96,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/p6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="20dp"
@@ -100,6 +105,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/p7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="20dp"

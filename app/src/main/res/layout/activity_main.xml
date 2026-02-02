@@ -11,8 +11,8 @@
     <!-- First layout : Horizontal-->
     <LinearLayout
         android:id="@+id/mainLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="4"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,18 +20,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-    <LinearLayout
-        android:id="@+id/leftColumnLayout"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="3"
-        android:gravity="center"
-        android:orientation="vertical">
+        <FrameLayout
+            android:id="@+id/leftColumnLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="vertical">
 
-        <LinearLayout
+        <FrameLayout
             android:id="@+id/topLeftColumnLayout"
             android:layout_width="match_parent"
-            android:layout_height="571dp"
+            android:layout_height="wrap_content"
             android:layout_weight="3"
             android:orientation="vertical">
 
@@ -42,7 +41,7 @@
                 android:contentDescription="@string/app_name"
                 android:scaleType="fitCenter"
                 android:src="@drawable/gameboard2" />
-        </LinearLayout>
+        </FrameLayout>
 
 
         <LinearLayout
@@ -50,7 +49,8 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_weight="3"
-            android:gravity="center"
+            android:gravity="bottom"
+            android:layout_gravity="bottom"
             android:orientation="horizontal"
             android:padding="10dp">
             <ImageView
@@ -119,10 +119,10 @@
 
         </LinearLayout>
 
-    </LinearLayout>
+    </FrameLayout>
         <LinearLayout
             android:id="@+id/rigthColumnLayout"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
@@ -235,7 +235,7 @@
                         android:src="@drawable/nocamera" />
 
                     <ImageView
-                        android:id="@+id/oncamera"
+                        android:id="@+id/oncamera4"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_weight="1"
@@ -255,7 +255,9 @@
                         android:layout_height="100dp"
                         android:layout_weight="1"
                         android:scaleType="fitStart"
+
                         android:src="@drawable/cameraworking" />
+
 
                     <ImageView
                         android:id="@+id/oncamera2"
@@ -263,6 +265,7 @@
                         android:layout_height="100dp"
                         android:layout_weight="1"
                         android:scaleType="fitStart"
+                        android:clickable="true"
                         android:src="@drawable/cameraworking" />
 
                     <ImageView
