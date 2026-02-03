@@ -337,17 +337,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
+
 <!--                contains the left dice [camera dices]-->
                     <ImageView
-                        android:id="@+id/diewitheye2"
+                        android:id="@+id/cameradie"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_weight="1"
                         android:scaleType="fitStart"
-                        android:src="@drawable/eyedie" />
-<!--                contains the right dice [movement dice]-->
+                        android:src="@drawable/eyedie2"
+                        android:padding="10dp"
+                        />
+                    <!--                contains the right dice [movement dice]-->
+
                     <ImageView
-                        android:id="@+id/regulardie2"
+                        android:id="@+id/regulardie"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_weight="1"
