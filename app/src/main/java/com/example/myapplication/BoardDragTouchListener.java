@@ -30,15 +30,17 @@ public class BoardDragTouchListener implements View.OnTouchListener {
         switch (event.getAction()) {
             // action down = when you first press the image
             case MotionEvent.ACTION_DOWN:
+                if (view.getTag(R.id.tag_original_parent) == null) {
+                    view.setTag(R.id.tag_original_parent, view.getParent());
+                }
 
-                // calculates the horizontal offset(distance between a and b)
-                // a = where the image initially is placed
-                // b = position at the moment you start touching the image
+                if (view.getTag(R.id.tag_original_x) == null || view.getTag(R.id.tag_original_y) == null) {
+                    view.setTag(R.id.tag_original_x, view.getX());
+                    view.setTag(R.id.tag_original_y, view.getY());
+                }
+
                 dX = view.getX() - event.getRawX();
-
-                // calculates the vertical offset of these 2 positions
                 dY = view.getY() - event.getRawY();
-
                 return true;
 
             // event that actually moves the image
@@ -72,6 +74,22 @@ public class BoardDragTouchListener implements View.OnTouchListener {
                     view.setX(newX);
                     view.setY(newY);
                     view.bringToFront();
+                }
+                // this else and if statement will snap the pieces back when dropped outside board
+                else {
+                    ViewGroup originalParent = (ViewGroup) view.getTag(R.id.tag_original_parent);
+                    Float originalX = (Float) view.getTag(R.id.tag_original_x);
+                    Float originalY = (Float) view.getTag(R.id.tag_original_y);
+
+                    if (originalParent != null && originalX != null && originalY != null) {
+                        ViewGroup currentParent = (ViewGroup) view.getParent();
+                        currentParent.removeView(view);
+                        originalParent.addView(view);
+
+                        view.setX(originalX);
+                        view.setY(originalY);
+                        view.bringToFront();
+                    }
                 }
 
                 // Special-case rule for pawn drop: convert to dot and resize
