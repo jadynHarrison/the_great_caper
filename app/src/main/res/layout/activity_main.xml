@@ -46,8 +46,8 @@
             <!-- Invisible grid overlay (12 x 11) -->
             <GridLayout
                 android:id="@+id/boardGrid"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:columnCount="12"
                 android:rowCount="11"
                 android:clickable="false"
@@ -56,8 +56,8 @@
 
             <FrameLayout
                 android:id="@+id/piecesLayer"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <!-- Bottom-left: Contains only the 9 paintings -->
             <LinearLayout

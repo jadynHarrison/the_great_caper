@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.os.Bundle;
+import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 
@@ -31,6 +32,47 @@ public class MainActivity extends AppCompatActivity {
 
         ViewGroup piecesLayer = findViewById(R.id.piecesLayer);
 
+
+        ImageView boardImage = findViewById(R.id.gameBoardImageView);
+
+        boardImage.post(() -> {
+            if (boardImage.getDrawable() == null) return;
+
+            // This matrix maps the drawable into the ImageView based on scaleType (fitCenter)
+            android.graphics.Matrix m = boardImage.getImageMatrix();
+            android.graphics.drawable.Drawable d = boardImage.getDrawable();
+
+            android.graphics.RectF drawableRect = new android.graphics.RectF(
+                    0, 0,
+                    d.getIntrinsicWidth(),
+                    d.getIntrinsicHeight()
+            );
+
+            android.graphics.RectF displayedRect = new android.graphics.RectF();
+            m.mapRect(displayedRect, drawableRect);
+
+            // displayedRect is in the ImageView's local coordinates
+            int left = Math.round(displayedRect.left);
+            int top = Math.round(displayedRect.top);
+            int width = Math.round(displayedRect.width());
+            int height = Math.round(displayedRect.height());
+
+            // Apply rectangle to GridLayout
+            FrameLayout.LayoutParams gridParams = (FrameLayout.LayoutParams) boardGrid.getLayoutParams();
+            gridParams.width = width;
+            gridParams.height = height;
+            gridParams.leftMargin = left;
+            gridParams.topMargin = top;
+            boardGrid.setLayoutParams(gridParams);
+
+            // Apply same rectangle to piecesLayer
+            FrameLayout.LayoutParams pieceParams = (FrameLayout.LayoutParams) piecesLayer.getLayoutParams();
+            pieceParams.width = width;
+            pieceParams.height = height;
+            pieceParams.leftMargin = left;
+            pieceParams.topMargin = top;
+            piecesLayer.setLayoutParams(pieceParams);
+        });
 
         // one listener instance, used by all draggable pieces
         objectDrag = new BoardDragTouchListener(piecesLayer, boardGrid);
