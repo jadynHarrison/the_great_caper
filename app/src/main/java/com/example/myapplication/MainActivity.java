@@ -20,11 +20,17 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+
         int numPlayers = getIntent().getIntExtra("numPlayers", 2);
 
         // These must exist in your XML inside leftColumnLayout
         GridLayout boardGrid = findViewById(R.id.boardGrid);
+
+        // TEMP DEBUG: show grid overlay
+        boardGrid.setBackgroundColor(0x2200FF00);
+
         ViewGroup piecesLayer = findViewById(R.id.piecesLayer);
+
 
         // one listener instance, used by all draggable pieces
         objectDrag = new BoardDragTouchListener(piecesLayer, boardGrid);
