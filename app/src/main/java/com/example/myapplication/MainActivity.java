@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.os.Bundle;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
@@ -21,11 +22,12 @@ public class MainActivity extends AppCompatActivity {
 
         int numPlayers = getIntent().getIntExtra("numPlayers", 2);
 
-        // calls for the layout with the board and the 9 paintings
-        ViewGroup mainBoard = findViewById(R.id.leftColumnLayout);
+        // These must exist in your XML inside leftColumnLayout
+        GridLayout boardGrid = findViewById(R.id.boardGrid);
+        ViewGroup piecesLayer = findViewById(R.id.piecesLayer);
 
         // one listener instance, used by all draggable pieces
-        objectDrag = new BoardDragTouchListener(mainBoard);
+        objectDrag = new BoardDragTouchListener(piecesLayer, boardGrid);
 
         // creating variable name(s) using the id name from cameras 1-4 [not the red ones]
         ImageView camera1 = findViewById(R.id.oncamera1);

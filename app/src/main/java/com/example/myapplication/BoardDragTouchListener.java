@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 
 /**
@@ -18,16 +19,22 @@ public class BoardDragTouchListener implements View.OnTouchListener {
     // handler = listener = responds to an object action (drag and drop)
     private float dX, dY;
 
-    private final ViewGroup mainBoard;
+    // Pieces live here (FrameLayout piecesLayer is best)
+    private final ViewGroup piecesLayer;
 
-    public BoardDragTouchListener(ViewGroup mainBoard) {
-        this.mainBoard = mainBoard;
+    // Grid overlay used for snapping
+    private final GridLayout boardGrid;
+
+    public BoardDragTouchListener(ViewGroup piecesLayer, GridLayout boardGrid) {
+        this.piecesLayer = piecesLayer;
+        this.boardGrid = boardGrid;
     }
 
     @Override
     public boolean onTouch(View view, MotionEvent event) {
 
         switch (event.getAction()) {
+
             // action down = when you first press the image
             case MotionEvent.ACTION_DOWN:
                 if (view.getTag(R.id.tag_original_parent) == null) {
@@ -56,24 +63,47 @@ public class BoardDragTouchListener implements View.OnTouchListener {
             // event that finalizes what happens to the piece
             case MotionEvent.ACTION_UP:
 
-                if (isInsideMainBoard(event, mainBoard)) {
-                    int[] parentLoc = new int[2];
-                    mainBoard.getLocationOnScreen(parentLoc);
+                // If dropped inside the grid area, snap to a tile
+                if (isInsideView(event, boardGrid)) {
 
-                    float newX = event.getRawX() - parentLoc[0];
-                    float newY = event.getRawY() - parentLoc[1];
+                    int[] gridLoc = new int[2];
+                    boardGrid.getLocationOnScreen(gridLoc);
 
-                    newX = Math.max(0, Math.min(newX, mainBoard.getWidth() - view.getWidth()));
-                    newY = Math.max(0, Math.min(newY, mainBoard.getHeight() - view.getHeight()));
+                    float xInGrid = event.getRawX() - gridLoc[0];
+                    float yInGrid = event.getRawY() - gridLoc[1];
 
+                    int cols = boardGrid.getColumnCount(); // 12
+                    int rows = boardGrid.getRowCount();    // 11
+
+                    float cellW = boardGrid.getWidth() / (float) cols;
+                    float cellH = boardGrid.getHeight() / (float) rows;
+
+                    int col = (int) (xInGrid / cellW);
+                    int row = (int) (yInGrid / cellH);
+
+                    // clamp to valid grid indices
+                    col = Math.max(0, Math.min(col, cols - 1));
+                    row = Math.max(0, Math.min(row, rows - 1));
+
+                    // snap to center of the tile
+                    float snappedX = (col + 0.5f) * cellW - (view.getWidth() / 2f);
+                    float snappedY = (row + 0.5f) * cellH - (view.getHeight() / 2f);
+
+                    // clamp so the piece never ends up partially outside
+                    snappedX = Math.max(0, Math.min(snappedX, piecesLayer.getWidth() - view.getWidth()));
+                    snappedY = Math.max(0, Math.min(snappedY, piecesLayer.getHeight() - view.getHeight()));
+
+                    // Move into piecesLayer if needed
                     ViewGroup oldParent = (ViewGroup) view.getParent();
-                    oldParent.removeView(view);
+                    if (oldParent != piecesLayer) {
+                        oldParent.removeView(view);
+                        piecesLayer.addView(view);
+                    }
 
-                    mainBoard.addView(view);
-
-                    view.setX(newX);
-                    view.setY(newY);
+                    view.setX(snappedX);
+                    view.setY(snappedY);
                     view.bringToFront();
+
                 }
                 // this else and if statement will snap the pieces back when dropped outside board
                 else {
@@ -96,8 +126,12 @@ public class BoardDragTouchListener implements View.OnTouchListener {
                 if (view.getId() == R.id.yellow_Pawn) {
                     ((ImageView) view).setImageResource(R.drawable.yellow_dot);
                     ViewGroup.LayoutParams params = view.getLayoutParams();
-                    params.width = 80;
-                    params.height = 80;
+
+                    // dp-safe sizing instead of raw 80px
+                    int sizePx = dpToPx(view, 24); // pick your dot size in dp
+                    params.width = sizePx;
+                    params.height = sizePx;
+
                     view.setLayoutParams(params);
                 }
 
@@ -108,17 +142,22 @@ public class BoardDragTouchListener implements View.OnTouchListener {
         }
     }
 
-    // helper method = checks whether the image is inside the game board's bounds
-    private boolean isInsideMainBoard(MotionEvent event, ViewGroup parent) {
-        int[] parentLoc = new int[2];
-        parent.getLocationOnScreen(parentLoc);
+    // helper method = checks whether the image is inside a target view's bounds
+    private boolean isInsideView(MotionEvent event, View target) {
+        int[] loc = new int[2];
+        target.getLocationOnScreen(loc);
 
         float x = event.getRawX();
         float y = event.getRawY();
 
-        return x >= parentLoc[0] &&
-                x <= parentLoc[0] + parent.getWidth() &&
-                y >= parentLoc[1] &&
-                y <= parentLoc[1] + parent.getHeight();
+        return x >= loc[0] &&
+                x <= loc[0] + target.getWidth() &&
+                y >= loc[1] &&
+                y <= loc[1] + target.getHeight();
+    }
+
+    private int dpToPx(View view, int dp) {
+        float density = view.getResources().getDisplayMetrics().density;
+        return Math.round(dp * density);
     }
 }

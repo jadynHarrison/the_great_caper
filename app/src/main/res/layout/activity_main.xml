@@ -19,13 +19,47 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-<!--    contains the game board and the 9 paintings in 1 layout -->
+
+        <!-- Left Layout: Contains the game board and the 9 paintings in 1 layout -->
         <FrameLayout
             android:id="@+id/leftColumnLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="3">
-<!--        contains only the 9 paintings -->
+            android:layout_weight="3"
+            android:clipChildren="true"
+            android:clipToPadding="true">
+
+            <!-- Top-left: Contains the board-map>-->
+            <ImageView
+                android:id="@+id/gameBoardImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/app_name"
+                android:scaleType="fitCenter"
+                android:layout_marginBottom="50dp"
+                android:src="@drawable/gameboard2"
+                android:clickable="false"
+                android:focusable="false"/>
+
+            <!--Between Left Layout: -->
+
+            <!-- Invisible grid overlay (12 x 11) -->
+            <GridLayout
+                android:id="@+id/boardGrid"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:columnCount="12"
+                android:rowCount="11"
+                android:clickable="false"
+                android:focusable="false"
+               />
+
+            <FrameLayout
+                android:id="@+id/piecesLayer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <!-- Bottom-left: Contains only the 9 paintings -->
             <LinearLayout
                 android:id="@+id/paintingLayout"
                 android:layout_width="match_parent"
@@ -41,6 +75,7 @@
                 <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+
 <!--                contains the "background painting" -->
 <!--                [ensures the layout doesn't shrink when the initial painting is moved]-->
 
@@ -252,16 +287,7 @@
             </LinearLayout>
 
 <!--        this layout contains the image of the game board-->
-            <ImageView
-                android:id="@+id/gameBoardImageView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/app_name"
-                android:scaleType="fitCenter"
-                android:scaleX="0.8"
-                android:scaleY="0.9"
-                android:layout_marginBottom="50dp"
-                android:src="@drawable/gameboard2" />
+
         </FrameLayout>
 
 <!--    this contains the user info [pawn and "your turn" and the dice]-->
